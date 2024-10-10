@@ -1,0 +1,32 @@
+.row {
+  display: grid;
+  grid-template-columns: 10% 14% 25% 20% 30% 1fr;
+  gap: 1px;
+}
+
+.row:nth-child(odd) {
+  background-color: #eeeeee;
+}
+
+.data-cell {
+  font-size: 16px;
+  padding: 15px;
+  color: #232c3b;
+  align-self: center;
+}
+
+.center {
+  text-align: center;
+}
+
+.justify {
+  text-align: justify;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.negativeAmount {
+  color: red;
+}
