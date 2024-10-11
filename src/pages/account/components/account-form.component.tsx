@@ -3,6 +3,7 @@ import classes from "./account-form.component.module.css";
 import { AccountError, createEmptyAccount, createEmptyAccountError } from "../account.vm";
 import { Account } from "../api";
 import { validateForm } from "../validations/account-form.validation";
+import { accountTypes } from "@/common/validations";
 
 interface Props {
     // newAccount: Account;
@@ -33,8 +34,8 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
 
     const handleFieldChange = (
         e:
-            | React.ChangeEvent<HTMLInputElement>
             | React.ChangeEvent<HTMLSelectElement>
+            | React.ChangeEvent<HTMLInputElement>
     ) => {
         setAccount({ ...accountData, [e.target.name]: e.target.value });
     }
@@ -42,30 +43,35 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className={classes.formContainer}>
-                <div>
+                <div className={`${classes.type_selecion_container} ${classes.large}`}>
                     <label>Tipo de cuenta:</label>
                     <select
                         name="type"
                         onChange={handleFieldChange}
                         value={accountData.type}
-                        className={classes.large}
+                        className={`${classes.type_selection_container} ${classes.large}`}
                     >
-                        <option value="">Seleccionar</option>
-                        <option value="">Ahorro</option>
-                        <option value="">Cuenta Corriente</option>
+                    <option value="">Seleccione una cuenta</option>
+
+                    {accountTypes.map((type) => (
+                        <option key={type} value={type}>
+                            {type}
+                        </option>
+                    ))}
                     </select>
                     <p className={classes.error}>{errors.type}</p>
+                </div>
 
+                <div className={classes.type_selecion_container}>
                     <label>Alias:</label>
                     <input
                         name="name"
                         onChange={handleFieldChange}
                         value={accountData.name}
                         className={classes.large}
-                    />
+                        />
                     <p className={classes.error}>{errors.name}</p>
                 </div>
-
                 <button type="submit">Guardar</button>
             </div>
         </form>
