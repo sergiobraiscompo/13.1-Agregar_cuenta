@@ -8,7 +8,7 @@ export interface FormValidationResult<T> {
     errors: T;
 }
 
-export const accountTypes: string[] = [
-    "Cuenta Corriente",
-    "Ahorro",
+export const accountTypes = [
+    "cuenta corriente",
+    "ahorro",
 ]

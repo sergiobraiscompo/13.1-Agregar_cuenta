@@ -1,6 +1,5 @@
 import { isAccountTypeCorrect, isDateAfterToday, isEmailWellFormed, isPositiveNumber, isStringValueInformed, isValidIban, isValueNotNullOrUndefined } from "./plain.validation";
 
-
 describe("plain.validation", () => {
     describe("isTypeCorrect specs", () => {
         it("should return false when value is not a valid accountType", () => {
@@ -16,10 +15,10 @@ describe("plain.validation", () => {
         
         it("should return true when value is a valid accountType", () => {
             // Arrange
-            const value = "Ahorro";
+            const value = "Cuenta Corriente";
             
             // Act
-            const result = isAccountTypeCorrect(value);
+            const result = isAccountTypeCorrect(value.toLowerCase());
             
             // Assert
             expect(result).toBeTruthy();

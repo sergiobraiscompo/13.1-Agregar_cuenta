@@ -3,9 +3,10 @@ import { AppLayout } from "@/layouts";
 import { AccountVM, TransferVM } from "./transfer.vm";
 import { TransferFormComponent } from "./components/transfer-form.component";
 import classes from "./transfer.page.module.css";
-import { getAccountList, saveTransfer } from "./api";
+import { saveTransfer } from "./api";
 import { mapAccountFromApiToVm, mapTransferFromVmToApi } from "./transfer.mapper";
 import { useParams } from "react-router-dom";
+import { getAccountList } from "@/common/api";
 
 export const TransferPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

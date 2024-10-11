@@ -1,17 +1,17 @@
-export interface Account {
+export interface AccountVM {
     type: string;
     name: string;
 }
 
 
-export const createEmptyAccount = (): Account => ({
+export const createEmptyAccount = (): AccountVM => ({
     type: "",
     name: "",
 })
 
 export interface AccountError {
-    name: string;
     type: string;
+    name: string;
 }
 
 export const createEmptyAccountError = (): AccountError => ({

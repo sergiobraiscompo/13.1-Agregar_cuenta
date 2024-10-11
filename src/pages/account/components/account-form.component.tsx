@@ -1,33 +1,24 @@
 import React from "react";
-import { Account } from "../account.vm";
-import { validateForm } from "../validations";
-import classes from "./create-account-form.component.module.css";
-import { AccountError, createEmptyAccount, createEmptyAccountError } from "../account.vm";
+import classes from "./account-form.component.module.css";
+import { AccountError, AccountVM, createEmptyAccount, createEmptyAccountError } from "../account.vm";
+import { Account } from "../api";
+import { validateForm } from "../validations/account-from.validation";
 
 interface Props {
-    accountData: Account
+    newAccount: AccountVM;
     onCreate: (accountInfo: Account) => void;
-    defaultAccount: Account
+    defaultAccount?: Account;
 }
 
 export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
-    const { accountData, onCreate } = props;
-    const [ account, setAccount ] = React.useState<Account>(
+    const { onCreate } = props;
+    const [ accountData, setAccount ] = React.useState<Account>(
         createEmptyAccount()
     );
 
     const [ errors, setErrors ] = React.useState<AccountError> (
         createEmptyAccountError()
     );
-
-    // React.useEffect(() => {
-    //     if(defaultAccountId) {
-    //         setTransfer((prevTransfer) => ({
-    //             ...prevTransfer,
-    //             accountId: defaultAccountId,
-    //         }))
-    //     }
-    // }, []);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -36,7 +27,7 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
         setErrors(formValidationResult.errors);
 
         if (formValidationResult.succeeded) {
-            onCreate(account);
+            onCreate(accountData);
         }
     }
 
@@ -45,7 +36,7 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
             | React.ChangeEvent<HTMLInputElement>
             | React.ChangeEvent<HTMLSelectElement>
     ) => {
-        setAccount({ ...account, [e.target.name]: e.target.value });
+        setAccount({ ...accountData, [e.target.name]: e.target.value });
     }
 
     return (
@@ -56,7 +47,7 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
                     <select
                         name="type"
                         onChange={handleFieldChange}
-                        value={account.type}
+                        value={accountData.type}
                         className={classes.large}
                     >
                         <option value="">Seleccionar</option>
@@ -69,7 +60,7 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
                     <input
                         name="name"
                         onChange={handleFieldChange}
-                        value={account.name}
+                        value={accountData.name}
                         className={classes.large}
                     />
                     <p className={classes.error}>{errors.name}</p>

@@ -1,7 +1,8 @@
 import * as apiModel from "./api"
+import * as commonApiModel from "@/common/api"
 import * as viewModel from "./transfer.vm"
 
-export const mapAccountFromApiToVm = (account: apiModel.Account): viewModel.AccountVM => ({
+export const mapAccountFromApiToVm = (account: commonApiModel.Account): viewModel.AccountVM => ({
     id: account.id,
     alias: account.name,
     iban: account.iban,

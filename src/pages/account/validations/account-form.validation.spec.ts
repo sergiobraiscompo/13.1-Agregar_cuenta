@@ -1,90 +1,53 @@
-// import { TransferVM } from "../create-account.vm";
-// import { vi } from "vitest";
-// import * as transferFieldValidation from "./create-account-field.validation";
-// import { validateForm } from "./create-account-from.validation";
+import { AccountVM } from "../account.vm";
+import { vi } from "vitest";
+import * as accountFieldValidation from "./account-field.validation";
+import { validateForm } from "./account-from.validation";
+import { REQUIRED_FIELD_MESSAGE } from "@/common/validations";
 
-// describe("transfer-form.validation specs", () => {
-//     describe("validateForm", () => {
-//     it("should return true when all fields are correct", () => {
-//         // Arrange
-//         const transfer: TransferVM = {
-//             accountId: "1",
-//             iban: "ES91 2100 0418 4502 0005 1332",
-//             name: "John Doe",
-//             amount: 1,
-//             concept: "Test",
+describe("account-form.validation specs", () => {
+    describe("validateForm", () => {
+        it("should return true when all fields are correct", () => {
+            // Arrange
+            const account: AccountVM = {
+                name: "Some Name",
+                type: "ahorro",
+            };
 
-//             notes: "",
-//             dateTransfer: "",
-//             realDateTransfer: undefined,
-//             email: "",
-//         };
+            vi.spyOn(accountFieldValidation, "validateNameField").mockReturnValue({ succeeded: true, });
+            vi.spyOn(accountFieldValidation, "validateTypeField").mockReturnValue({ succeeded: true, });
 
-//         vi.spyOn(transferFieldValidation, "validateIBANField").mockReturnValue({ succeeded: true, });
-//         vi.spyOn(transferFieldValidation, "validateNameField").mockReturnValue({ succeeded: true, });
-//         vi.spyOn(transferFieldValidation, "validateAmountField").mockReturnValue({ succeeded: true, });
-//         vi.spyOn(transferFieldValidation, "validateConceptField").mockReturnValue({ succeeded: true, });
-//         vi.spyOn(transferFieldValidation, "validateNotesField").mockReturnValue({ succeeded: true, });
-//         vi.spyOn(transferFieldValidation, "validateRealDateTransferField").mockReturnValue({ succeeded: true, });
-//         vi.spyOn(transferFieldValidation, "validateEmailField").mockReturnValue({ succeeded: true, });
+            // Act
+            const result = validateForm(account);
 
-//         // Act
-//         const result = validateForm(transfer);
+            // Assert
+            expect(result.succeeded).toBeTruthy();
+            expect(result.errors).toEqual({
+                name: "",
+                type: "",
+            });
+        });
+    });
 
-//         // Assert
-//         expect(result.succeeded).toBeTruthy();
-//         expect(result.errors).toEqual({
-//             accountId: "",
-//             iban: "",
-//             name: "",
-//             amount: "",
-//             concept: "",
-//             notes: "",
-//             realDateTransfer: "",
-//             email: "",
-//             dateTransfer: "",
-//         });
-//     });
-    
-//     it("should return false when validateNameFieldAmount is incorrect", () => {
-//         // Arrange
-//         const transfer: TransferVM = {
-//             accountId: "1",
-//             iban: "ES91 2100 0418 4502 0005 1332",
-//             name: "",
-//             amount: 1,
-//             concept: "Test",
-//             notes: "",
-//             dateTransfer: "",
-//             email: "",
-//         };
+    describe("validateForm", () => {
+        it("should return false when name field is empty", () => {
+            // Arrange
+            const account: AccountVM = {
+                name: "",
+                type: "ahorro",
+            };
 
-//         vi.spyOn(transferFieldValidation, "validateIBANField").mockReturnValue({ succeeded: true, });
-//         vi.spyOn(transferFieldValidation, "validateNameField").mockReturnValue({ succeeded: false, errorMessage: "Error", });
-//         vi.spyOn(transferFieldValidation, "validateAmountField").mockReturnValue({ succeeded: true, });
-//         vi.spyOn(transferFieldValidation, "validateConceptField").mockReturnValue({ succeeded: true, });
-//         vi.spyOn(transferFieldValidation, "validateNotesField").mockReturnValue({ succeeded: true, });
-//         vi.spyOn(transferFieldValidation, "validateRealDateTransferField").mockReturnValue({ succeeded: true });
-//         vi.spyOn(transferFieldValidation, "validateEmailField").mockReturnValue({ succeeded: true, });
+            vi.spyOn(accountFieldValidation, "validateTypeField").mockReturnValue({ succeeded: true, });
+            vi.spyOn(accountFieldValidation, "validateNameField").mockReturnValue({ succeeded: false, errorMessage: REQUIRED_FIELD_MESSAGE});
 
-//         // Act
-//         const result = validateForm(transfer);
+            // Act
+            const result = validateForm(account);
 
-//         // Assert
-//         expect(result.succeeded).toBeFalsy();
-//         expect(result.errors).toEqual({
-//             accountId: "",
-//             iban: "",
-//             name: "Error",
-//             amount: "",
-//             concept: "",
-//             notes: "",
-//             realDateTransfer: "",
-//             email: "",
-
-//             dateTransfer: "",
-//         });
-//         // Do the same with the rest of the fields
-//         });
-//     });
-// });
+            // Assert
+            expect(result.succeeded).toBeFalsy();
+            expect(result.errors).toEqual({
+                type: "",
+                name: REQUIRED_FIELD_MESSAGE,
+            });
+        });
+    });
+});

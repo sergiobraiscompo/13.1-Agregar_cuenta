@@ -1,11 +1,11 @@
 import { FormValidationResult } from "@/common/validations";
-import { Account, AccountError } from "../account.vm";
-import { validateNameField, validatetypeField } from "./account-field.validation";
+import { AccountVM, AccountError } from "../account.vm";
+import { validateNameField, validateTypeField } from "./account-field.validation";
 
-export const validateForm = (account: Account): FormValidationResult<AccountError> => {
+export const validateForm = (account: AccountVM): FormValidationResult<AccountError> => {
     const fieldValidationResults = [
+        validateTypeField(account.type),
         validateNameField(account.name),
-        validatetypeField(account.type),
     ]
 
     const formValidationResult: FormValidationResult<AccountError> = {
