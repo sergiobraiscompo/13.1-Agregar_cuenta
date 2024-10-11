@@ -1,11 +1,11 @@
 import React from "react";
 import classes from "./account-form.component.module.css";
-import { AccountError, AccountVM, createEmptyAccount, createEmptyAccountError } from "../account.vm";
+import { AccountError, createEmptyAccount, createEmptyAccountError } from "../account.vm";
 import { Account } from "../api";
-import { validateForm } from "../validations/account-from.validation";
+import { validateForm } from "../validations/account-form.validation";
 
 interface Props {
-    newAccount: AccountVM;
+    // newAccount: Account;
     onCreate: (accountInfo: Account) => void;
     defaultAccount?: Account;
 }
@@ -65,6 +65,8 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
                     />
                     <p className={classes.error}>{errors.name}</p>
                 </div>
+
+                <button type="submit">Guardar</button>
             </div>
         </form>
     )

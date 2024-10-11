@@ -1,7 +1,7 @@
 import { AccountVM } from "../account.vm";
 import { vi } from "vitest";
 import * as accountFieldValidation from "./account-field.validation";
-import { validateForm } from "./account-from.validation";
+import { validateForm } from "./account-form.validation";
 import { REQUIRED_FIELD_MESSAGE } from "@/common/validations";
 
 describe("account-form.validation specs", () => {
