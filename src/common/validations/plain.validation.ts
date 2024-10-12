@@ -16,5 +16,5 @@ export const isValueNotNullOrUndefined = <T>(value: T): boolean => {
 };
 
 export const isAccountTypeCorrect = (value: string): boolean => {
-    return accountTypes.includes(value.toLowerCase());
+    return accountTypes.includes(value);
 };

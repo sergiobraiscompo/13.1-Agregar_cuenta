@@ -4,11 +4,12 @@ export const validateTypeField = (value: string): FieldValidationResult => {
     if (!isValueNotNullOrUndefined(value)) {
         return buildRequiredFieldValidationFailedResponse();
     }
-
+    
     if (value && !isAccountTypeCorrect(value)) {
+        console.log("Comprobando tipo cuenta")
         return buildValidationFailedResult(INVALID_TYPE_MESSAGE);
     }
-
+    
     return buildValidationSucceededResult();
 }
 

@@ -1,21 +1,18 @@
-:root {
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight: 400;
-  
-    /* colors */
-    --primary_color: #22c6cb;
-    --secondary_color: #232c3b;
-    --primary_color_darker: #1d9ea8;
-    --error_color: #f44336;
-    --element-border-color: #e5e5e5;
-    --element-radius: 10px;
-    --table-header-color: var(--secondary_color);
-    --table-header-background-color: #ccc;
-    --table-header-font-size: 16px;
-    --table-header-font-weight: 900;
-  }
+.form-container {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    align-items: center;
+    border: none;
+    border-bottom: 1px solid #232c3b;
+    padding: 40px 0;
+}
+
+.form-container p {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    width: max-content;
+}
 
 .error {
     color: var(--error_color);
@@ -23,66 +20,45 @@
     margin-left: 1rem;
 }
 
+.type-selection-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.type-selection-container label{
+    margin-right: 20px;
+}
+
 select {
     overflow: hidden;
-    display: block;
-    height: 100%;
     box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, 0.5);
     font-size: 13px;
     border-radius: 10px;
-    padding: 8px 10px;
     cursor: pointer;
+    width: 200px;
+    height: 30px;
+    background-color: white;
 }
 
 select option {
     font-size: 15px;
 }
 
-.form-container {
+.name-input-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    height: 500px;
-    border: none;
-    border-bottom: 1px solid #232c3b;
-    border: 1px solid black;
-    padding: 40px 0;
+    justify-content: space-evenly;
 }
 
-.type_selection_container {
-    border: red;
-    width: fit-content;
-}
-
-.type_selecion_container {
-    background-color: black;
-}
-
-.name_input_container {
-    border: red;
-    width: fit-content;
-}
-
-.form-container p {
-    font-size: 0.9em;
-    margin-bottom: 20px;
-}
-
-.form-container div p {
-    margin: 0 10px;
-}
-
-.form-container label {
+.name-input-container label {
     margin-right: 20px;
-    min-width: 300px;
-    text-align: right;
+    margin-left: 65px;
 }
 
-.large {
-    width: 400px;
-}
-
-.small {
-    width: 100px;
+.name-input-container input {
+    height: 30px;
+    width: 200px;
 }

@@ -37,39 +37,38 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
             | React.ChangeEvent<HTMLSelectElement>
             | React.ChangeEvent<HTMLInputElement>
     ) => {
+        console.log("accountData:", accountData)
         setAccount({ ...accountData, [e.target.name]: e.target.value });
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <div className={classes.formContainer}>
-                <div className={`${classes.type_selecion_container} ${classes.large}`}>
+                <div className={`${classes.typeSelectionContainer}`}>
                     <label>Tipo de cuenta:</label>
                     <select
                         name="type"
                         onChange={handleFieldChange}
                         value={accountData.type}
-                        className={`${classes.type_selection_container} ${classes.large}`}
                     >
-                    <option value="">Seleccione una cuenta</option>
+                        <option value="">Seleccionar</option>
 
-                    {accountTypes.map((type) => (
-                        <option key={type} value={type}>
-                            {type}
-                        </option>
-                    ))}
+                        {accountTypes.map((type) => (
+                            <option key={type} value={type}>
+                                {type}
+                            </option>
+                        ))}
                     </select>
                     <p className={classes.error}>{errors.type}</p>
                 </div>
 
-                <div className={classes.type_selecion_container}>
+                <div className={classes.nameInputContainer}>
                     <label>Alias:</label>
                     <input
                         name="name"
                         onChange={handleFieldChange}
                         value={accountData.name}
-                        className={classes.large}
-                        />
+                    />
                     <p className={classes.error}>{errors.name}</p>
                 </div>
                 <button type="submit">Guardar</button>

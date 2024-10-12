@@ -16,5 +16,7 @@ export const validateForm = (account: AccountVM): FormValidationResult<AccountEr
         }
     }
 
+    console.log(formValidationResult)
+
     return formValidationResult;
 }

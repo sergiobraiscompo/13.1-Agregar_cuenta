@@ -9,6 +9,6 @@ export interface FormValidationResult<T> {
 }
 
 export const accountTypes = [
-    "cuenta corriente",
-    "ahorro",
+    "Cuenta Corriente",
+    "Ahorro",
 ]

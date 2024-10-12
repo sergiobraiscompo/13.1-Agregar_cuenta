@@ -29,7 +29,6 @@ export const MovementListPage: React.FC = () => {
         <div className={classes.root}>
           <div className={classes.headerContainer}>
             <h1>Mis cuentas</h1>
-            <button>AGREGAR NUEVA CUENTA</button>
           </div>
           <MovementListTableComponent movementList={movementsList} />
         </div>
