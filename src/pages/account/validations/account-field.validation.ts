@@ -1,6 +1,10 @@
 import { buildRequiredFieldValidationFailedResponse, buildValidationFailedResult, buildValidationSucceededResult, FieldValidationResult, INVALID_TYPE_MESSAGE, isAccountTypeCorrect, isStringValueInformed, isValueNotNullOrUndefined } from "@/common/validations";
 
 export const validateTypeField = (value: string): FieldValidationResult => {
+    if (!isStringValueInformed(value)) {
+        return buildRequiredFieldValidationFailedResponse();
+    }
+
     if (!isValueNotNullOrUndefined(value)) {
         return buildRequiredFieldValidationFailedResponse();
     }

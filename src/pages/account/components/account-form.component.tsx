@@ -24,7 +24,6 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formValidationResult = validateForm(accountData);
-
         setErrors(formValidationResult.errors);
 
         if (formValidationResult.succeeded) {
@@ -37,7 +36,6 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
             | React.ChangeEvent<HTMLSelectElement>
             | React.ChangeEvent<HTMLInputElement>
     ) => {
-        console.log("accountData:", accountData)
         setAccount({ ...accountData, [e.target.name]: e.target.value });
     }
 

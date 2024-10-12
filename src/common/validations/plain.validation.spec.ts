@@ -13,12 +13,23 @@ describe("plain.validation", () => {
             expect(result).toBeFalsy();
         });
         
+        it("should return false and value not informed error when value is empty", () => {
+            // Arrange
+            const value = "dsaf";
+            
+            // Act
+            const result = isAccountTypeCorrect(value);
+            
+            // Assert
+            expect(result).toBeFalsy();
+        });
+        
         it("should return true when value is a valid accountType", () => {
             // Arrange
             const value = "Cuenta Corriente";
             
             // Act
-            const result = isAccountTypeCorrect(value.toLowerCase());
+            const result = isAccountTypeCorrect(value);
             
             // Assert
             expect(result).toBeTruthy();

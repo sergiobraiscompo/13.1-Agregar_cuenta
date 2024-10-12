@@ -23,11 +23,9 @@ export const CreateAccountPage: React.FC = () => {
 
   
   const handleAccount = (accountData: AccountVM) => {
-    console.log(accountData);
-
     if (type && name) {
+      accountData = {type, name};
       saveAccount(accountData).then((result) => {
-        console.log(result)
         if (result) {
             const accountVM = mapAccountFromVmToApi(accountData);
             setNewAccount(accountVM);
@@ -36,10 +34,10 @@ export const CreateAccountPage: React.FC = () => {
             alert("Ha ocurrido un error al crear la cuenta.")
           }
       })
-    } else {
-      alert("Ha ocurrido un error con los campos tipo de cuenta y alias")
-    }
-  };
+    } /* else {*/
+    //   alert("Ha ocurrido un error con los campos tipo de cuenta y alias")
+    // }
+    };
 
   return (
     <AppLayout>
