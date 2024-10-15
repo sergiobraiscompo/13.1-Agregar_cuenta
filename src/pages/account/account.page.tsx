@@ -1,6 +1,6 @@
 import React from "react";
 import { AppLayout } from "@/layouts";
-import { saveAccount } from "./api";
+import { Account, saveAccount } from "./api";
 import classes from "./account.page.module.css"
 import { AccountToCreateFormComponent } from "./components/account-form.component";
 import { useParams } from "react-router-dom";
@@ -22,10 +22,11 @@ export const CreateAccountPage: React.FC = () => {
   // }, []);
 
   
-  const handleAccount = (accountData: AccountVM) => {
+  const handleAccount = () => {
+    
     if (type && name) {
-      accountData = {type, name};
-      saveAccount(accountData).then((result) => {
+      const accountData = {type: type, name: name};
+      saveAccount({accountData}).then((result) => {
         if (result) {
             const accountVM = mapAccountFromVmToApi(accountData);
             setNewAccount(accountVM);
@@ -34,9 +35,9 @@ export const CreateAccountPage: React.FC = () => {
             alert("Ha ocurrido un error al crear la cuenta.")
           }
       })
-    } /* else {*/
-    //   alert("Ha ocurrido un error con los campos tipo de cuenta y alias")
-    // }
+      } else {
+        alert("Ha ocurrido un error con los campos tipo de cuenta y alias")
+      }
     };
 
   return (
