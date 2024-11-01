@@ -18,7 +18,7 @@ interface Props {
 
 export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
   const { newAccount, onCreate } = props;
-  const { account, setAccount } = React.useState<AccountVM>(
+  const [account, setAccount] = React.useState<AccountVM>(
     createEmptyAccountVM()
   );
 
@@ -32,7 +32,7 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
     setErrors(formValidationResult.errors);
 
     if (formValidationResult.succeeded) {
-      onCreate(account);
+      onCreate(newAccount);
     }
   };
 
@@ -41,7 +41,7 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
       | React.ChangeEvent<HTMLSelectElement>
       | React.ChangeEvent<HTMLInputElement>
   ) => {
-    setAccount({ ...account, [e.target.name]: e.target.value });
+    setAccount({ ...newAccount, [e.target.name]: e.target.value });
     console.log(e);
   };
 
@@ -50,11 +50,7 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
       <div className={classes.formContainer}>
         <div className={`${classes.typeSelectionContainer}`}>
           <label>Tipo de cuenta:</label>
-          <select
-            name="type"
-            onChange={handleFieldChange}
-            value={account.type}
-          >
+          <select name="type" onChange={handleType} value={account.type}>
             <option value="">Seleccionar</option>
 
             {accountTypes.map((type) => (
