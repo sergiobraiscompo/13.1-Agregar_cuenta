@@ -4,7 +4,7 @@ export interface AccountVM {
 }
 
 
-export const createEmptyAccount = (): AccountVM => ({
+export const createEmptyAccountVM = (): AccountVM => ({
     type: "",
     name: "",
 })
