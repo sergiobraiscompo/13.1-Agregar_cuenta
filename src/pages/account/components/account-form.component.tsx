@@ -42,7 +42,6 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
       | React.ChangeEvent<HTMLInputElement>
   ) => {
     setAccount({ ...newAccount, [e.target.name]: e.target.value });
-    console.log(e);
   };
 
   return (
@@ -50,7 +49,7 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
       <div className={classes.formContainer}>
         <div className={`${classes.typeSelectionContainer}`}>
           <label>Tipo de cuenta:</label>
-          <select name="type" onChange={handleType} value={account.type}>
+          <select name="type" onChange={handleFieldChange} value={account.type}>
             <option value="">Seleccionar</option>
 
             {accountTypes.map((type) => (
