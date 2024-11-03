@@ -11,13 +11,12 @@ import { validateForm } from "../validations/account-form.validation";
 import { accountTypes } from "@/common/validations";
 
 interface Props {
-  newAccount: Account;
   onCreate: (accountInfo: Account) => void;
   defaultAccount?: Account;
 }
 
 export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
-  const { newAccount, onCreate } = props;
+  const { onCreate } = props;
   const [account, setAccount] = React.useState<AccountVM>(
     createEmptyAccountVM()
   );
@@ -32,22 +31,22 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
     setErrors(formValidationResult.errors);
 
     if (formValidationResult.succeeded) {
-      onCreate(newAccount);
+      onCreate(account);
     }
   };
 
   const handleFieldChange = (
     e:
-      | React.ChangeEvent<HTMLSelectElement>
       | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
   ) => {
-    setAccount({ ...newAccount, [e.target.name]: e.target.value });
+    setAccount({ ...account, [e.target.name]: e.target.value });
   };
 
   return (
     <form onSubmit={handleCreateAccount}>
       <div className={classes.formContainer}>
-        <div className={`${classes.typeSelectionContainer}`}>
+        <div className={classes.typeSelectionContainer}>
           <label>Tipo de cuenta:</label>
           <select name="type" onChange={handleFieldChange} value={account.type}>
             <option value="">Seleccionar</option>
@@ -63,7 +62,11 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
 
         <div className={classes.nameInputContainer}>
           <label>Alias:</label>
-          <input name="name" onChange={handleFieldChange} />
+          <input
+            name="name"
+            onChange={handleFieldChange}
+            value={account.name}
+          />
           <p className={classes.error}>{errors.name}</p>
         </div>
         <button type="submit">Guardar</button>

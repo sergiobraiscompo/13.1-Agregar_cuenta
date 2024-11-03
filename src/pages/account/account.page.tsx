@@ -7,16 +7,16 @@ import { AccountVM, createEmptyAccountVM } from "./account.vm";
 import { mapAccountFromVmToApi } from "./account.page.mapper";
 
 export const CreateAccountPage: React.FC = () => {
-  const [newAccount, setNewAccount] = React.useState<AccountVM>(
+  const [account, setAccount] = React.useState<AccountVM>(
     createEmptyAccountVM()
   );
 
   const handleAccount = () => {
-      saveAccount(newAccount).then((result) => {
+      saveAccount(account).then((result) => {
         if (result) {
-          const accountVM = mapAccountFromVmToApi(newAccount);
+          const accountVM = mapAccountFromVmToApi(account);
           console.log(accountVM)
-          setNewAccount(accountVM);
+          setAccount(accountVM);
           alert("Cuenta creada con éxito.");
         } else {
           alert("Ha ocurrido un error al crear la cuenta.");
@@ -30,7 +30,7 @@ export const CreateAccountPage: React.FC = () => {
         <h1 className={classes.title}>Cuenta Bancaria</h1>
         <AccountToCreateFormComponent
           onCreate={handleAccount}
-          newAccount={newAccount}
+          defaultAccount={account}
         />
       </div>
     </AppLayout>
