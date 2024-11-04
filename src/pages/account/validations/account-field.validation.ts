@@ -10,7 +10,6 @@ export const validateTypeField = (value: string): FieldValidationResult => {
     }
 
     if (value && !isAccountTypeCorrect(value)) {
-        console.log("Comprobando tipo cuenta")
         return buildValidationFailedResult(INVALID_TYPE_MESSAGE);
     }
 

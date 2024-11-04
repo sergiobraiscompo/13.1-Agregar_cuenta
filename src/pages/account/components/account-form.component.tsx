@@ -25,7 +25,6 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
   );
 
   const handleCreateAccount = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log("account in form component", account);
     e.preventDefault();
     const formValidationResult = validateForm(account);
     setErrors(formValidationResult.errors);

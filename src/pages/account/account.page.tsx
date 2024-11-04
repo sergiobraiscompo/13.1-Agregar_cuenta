@@ -8,7 +8,6 @@ import { mapAccountFromVmToApi } from "./account.page.mapper";
 
 export const CreateAccountPage: React.FC = () => {
   const handleAccount = (accountInfo: AccountVM) => {
-    console.log("Account in handle account", accountInfo);
     const account = mapAccountFromVmToApi(accountInfo);
 
     saveAccount(account).then((result) => {
