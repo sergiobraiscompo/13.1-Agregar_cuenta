@@ -11,8 +11,7 @@ import { validateForm } from "../validations/account-form.validation";
 import { accountTypes } from "@/common/validations";
 
 interface Props {
-  onCreate: (accountInfo: Account) => void;
-  defaultAccount?: Account;
+  onCreate: (account: Account) => void;
 }
 
 export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
@@ -26,6 +25,7 @@ export const AccountToCreateFormComponent: React.FC<Props> = (props) => {
   );
 
   const handleCreateAccount = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log("account in form component", account);
     e.preventDefault();
     const formValidationResult = validateForm(account);
     setErrors(formValidationResult.errors);
